@@ -4,11 +4,16 @@ pipeline {
             image 'golang'
         }
     }
+    stage('Checkout') {
+        steps {
+            checkout scm
+        }
+    }
     stages{
         stage('Build'){
             steps{
                 sh 'echo "Compiling the code"'
-                sh 'go biuld main.go'
+                sh 'go build main.go'
                 stash includes: 'main', name: 'goTest'
             }
         }
@@ -23,11 +28,6 @@ pipeline {
                 sh 'echo "running the file"'
                 unstash 'goTest'
                 sh './main'
-            }
-        }
-        stage('Checkout') {
-            steps {
-                checkout scm
             }
         }
     }
