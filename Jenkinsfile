@@ -8,22 +8,22 @@ pipeline {
         }
         stage('Build'){
             steps{
-                sh 'echo "Compiling the code"'
-                sh 'go build main.go'
+                bat 'echo "Compiling the code"'
+                bat 'go build main.go'
                 stash includes: 'main.exe', name: 'goTest'
             }
         }
         stage('test'){
             steps{
-                sh 'echo "Testing the go file"'
-                sh 'go test'
+                bat 'echo "Testing the go file"'
+                bat 'go test'
             }
         }
         stage('deploy'){
             steps{
-                sh 'echo "running the file"'
+                bat 'echo "running the file"'
                 unstash 'goTest'
-                sh 'main.exe'
+                bat 'main.exe'
             }
         }
     }
