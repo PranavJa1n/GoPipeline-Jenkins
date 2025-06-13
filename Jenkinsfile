@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     stages{
         stage('Checkout') {
             steps {
@@ -9,7 +10,7 @@ pipeline {
             steps{
                 sh 'echo "Compiling the code"'
                 sh 'go build main.go'
-                stash includes: 'main', name: 'goTest'
+                stash includes: 'main.exe', name: 'goTest'
             }
         }
         stage('test'){
@@ -22,7 +23,7 @@ pipeline {
             steps{
                 sh 'echo "running the file"'
                 unstash 'goTest'
-                sh './main'
+                sh 'main.exe'
             }
         }
     }
