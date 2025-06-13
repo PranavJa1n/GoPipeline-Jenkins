@@ -4,12 +4,12 @@ pipeline {
             image 'golang'
         }
     }
-    stage('Checkout') {
-        steps {
-            checkout scm
-        }
-    }
     stages{
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build'){
             steps{
                 sh 'echo "Compiling the code"'
