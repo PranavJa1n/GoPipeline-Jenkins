@@ -1,9 +1,9 @@
 package main
 
 import (
-	"math/rand"
+	// "math/rand"
 	"testing"
-	"time"
+	// "time"
 )
 
 func TestHello(t *testing.T) {
